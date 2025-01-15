@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'users/styles.css' %}">
+</head>
+{% block content %}
+<h2>Sign Up</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign Up</button>
+</form>
+<hr>
+<p>Already Have an account? Login now</p>
+<div class="action-buttons">
+    <button class="action-button reject" id="reject-button">Login</button>
+</div>
+
+<div id="rejection-form" class="popup-form" style="display: none;">
+    <h3>Login</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{loginform.username}}
+        {{loginform.password}}
+        <button type="submit" class="action-button reject">Login</button>
+        <button type="button" class="action-button cancel" id="cancel-rejection">Close</button>
+    </form>
+</div>
+
+<script>
+    // Show/Hide Rejection Form
+    document.getElementById('reject-button').addEventListener('click', function() {
+        document.getElementById('rejection-form').style.display = 'block';
+    });
+
+    document.getElementById('cancel-rejection').addEventListener('click', function() {
+        document.getElementById('rejection-form').style.display = 'none';
+    });
+</script>
+{% endblock %}

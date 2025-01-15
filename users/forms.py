@@ -7,7 +7,11 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 
-class SignupForm(forms.ModelForm):
+class SignUpForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['username', 'email', 'phone_number', 'password', 'confirm_password']
+    
     username = forms.CharField(max_length=100)
     email = forms.EmailField(max_length=254)
     phone_number =forms.CharField(max_length=11)
@@ -28,3 +32,5 @@ class SignupForm(forms.ModelForm):
         phone_number = self.cleaned_data.get("phone_number")
         user = User.objects.create_user(username=username, email=email, password=password, phone_number=phone_number)
         return user
+    
+    

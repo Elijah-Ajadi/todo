@@ -4,7 +4,7 @@ from .models import Task
 
 
 def index(request):
-    return HttpResponse('This is a home page')
+    return render(request, "base.html")
 
 def completed(request, task_id):
     task = get_object_or_404(Task, id=task_id)

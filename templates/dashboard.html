@@ -133,9 +133,9 @@
             <div class="todo-list">
                 <div class="todo-item">
                     <span class="todo-category">{{todos.task_category}}</span>
-                    <h2>t{{todos.task_name}}</h2>
+                    <h2>{{todos.task_name}}</h2>
                     <p>{{todos.task_description}}</p>
-                    <a href="{% url 'completed' todos.id %}" button class="mark-complete">Mark as Completed</button></a>
+                    <a href="{% url 'completed' todos.id %}"><button class="mark-complete">Mark as Completed</button></a>
                 </div>
                 <!-- More todo items here -->
             </div>

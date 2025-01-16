@@ -7,12 +7,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
-
+from tasks.views import dashboard
 # Create your views here.
 
 
-def profile(request):
-    return HttpResponse("This is the user profile")
+
 
 def signup_view(request):
     if request.method == 'POST':
@@ -32,7 +31,7 @@ def signup_view(request):
             profile = Profile.objects.create(username=username, email=email, phone_number=phone_number)
             profile.save()
 
-            return redirect('login')
+            return redirect('dashboard')
     else:
         form = SignUpForm()
         
@@ -42,25 +41,9 @@ def signup_view(request):
         if loginform.is_valid():
             user = loginform.get_user()
             auth_login(request, user)
-            return redirect('profile')
+            return redirect('dashboard')
         
     else:
         loginform = AuthenticationForm()
         
-    # context = {
-    #     'form': form,
-    #     'loginform': loginform,
-    # }
     return render(request, 'users/signup.html', context={'form': form, 'loginform': loginform})
-
-# def login(request):
-#     elif request.method == 'POST':
-#         form = AuthenticationForm(request, request.POST)
-#         if form.is_valid():
-#             user = form.get_user()
-#             auth_login(request, user)
-#             return redirect('profile')  # Redirect to home page after login
-    
-#         form = AuthenticationForm()
-     
-#     return render(request, 'users/signup.html', {'form': form})

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+        <style>
+            {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                background-color: #b2ebf2;
+                min-height: 100vh;
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .welcome-screen {
+                text-align: center;
+                padding-top: 20vh;
+            }
+
+            .welcome-screen h1 {
+                font-size: 3rem;
+                margin-bottom: 2rem;
+            }
+
+            .auth-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .button {
+                padding: 1rem 3rem;
+                border-radius: 2rem;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .button:hover {
+                transform: scale(1.05);
+            }
+
+            .signup-btn {
+                background-color: #00bcd4;
+                color: white;
+            }
+
+            .login-btn {
+                background-color: #000;
+                color: white;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!-- Welcome Screen -->
+        <div class="container welcome-screen" id="welcome-screen">
+            <h1>WELCOME TO YOUR TODO APP</h1>
+            <div class="auth-buttons">
+                <button class="button signup-btn">SignUp</button>
+                <button class="button login-btn">Login</button>
+            </div>
+        </div>
+    </body>
+</html>

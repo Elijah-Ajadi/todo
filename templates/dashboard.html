@@ -128,48 +128,39 @@
             <h1>Hello, Elijah</h1>
             <button class="logout-btn">Logout</button>
         </header>
-
+        {% for todos in todos %}
         <div class="main-content">
             <div class="todo-list">
                 <div class="todo-item">
-                    <span class="todo-category">SCHOOL | PERSONAL</span>
-                    <h2>READ FOR MY EXAM</h2>
-                    <p>I have to read for my examinations this is very important to me. I must read all subjects too.</p>
-                    <button class="mark-complete">Mark as Completed</button>
+                    <span class="todo-category">{{todos.task_category}}</span>
+                    <h2>t{{todos.task_name}}</h2>
+                    <p>{{todos.task_description}}</p>
+                    <a href="{% url 'completed' todos.id %}" button class="mark-complete">Mark as Completed</button></a>
                 </div>
                 <!-- More todo items here -->
             </div>
-
+        {% endfor %}
             <div class="forms-section">
                 <div class="add-todo-form">
                     <h2>ADD TODO</h2>
                     <div class="form-group">
-                        <input type="text" placeholder="Title">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="submit-btn" type="submit">SUBMIT</button>
+                    </form>
                     </div>
-                    <div class="form-group">
-                        <textarea placeholder="Description"></textarea>
-                    </div>
-                    <div class="form-group dropdown-group">
-                        <select>
-                            <option value="" disabled selected>Category</option>
-                            <option>School</option>
-                            <option>Personal</option>
-                        </select>
-                        <select>
-                            <option value="" disabled selected>Type</option>
-                            <option>Important</option>
-                            <option>Regular</option>
-                        </select>
-                    </div>
-                    <button class="submit-btn">SUBMIT</button>
                 </div>
 
                 <div class="add-category-form">
                     <h2>ADD CATEGORY</h2>
                     <div class="form-group">
-                        <input type="text" placeholder="Name">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ catform.as_p }}
+                        <button class="submit-btn" type="submit">SUBMIT</button>
+                    </form>
                     </div>
-                    <button class="submit-btn">SUBMIT</button>
                 </div>
             </div>
         </div>
